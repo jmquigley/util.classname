@@ -17,10 +17,27 @@ export class ClassNames {
 	private _clstr: string = '';
 	private _delimiter: string;
 	private _dirty: boolean = true;
+	private _obj: any = null;
 
 	constructor(strs: ClassValue = null, delimiter: string = ' ') {
 		this._delimiter = delimiter;
 		this.add(strs);
+	}
+
+	/**
+	 * @return the current value of the dirty flag.
+	 */
+	get dirty(): boolean {
+		return this._dirty;
+	}
+
+	/**
+	 * When the Map object is modified the dirty state is set to true.
+	 * @param val {boolean} the state of the dirtfy flag
+	 */
+	set dirty(val: boolean) {
+		this._dirty = val;
+		this._obj = null;
 	}
 
 	/**
@@ -37,7 +54,7 @@ export class ClassNames {
 	 * the object.
 	 */
 	get classnames(): string {
-		if (this._dirty) {
+		if (this.dirty) {
 			this._clstr = '';
 			for (const [key, val] of this._classes.entries()) {
 				if (val) {
@@ -46,7 +63,7 @@ export class ClassNames {
 			}
 
 			this._clstr = this._clstr.slice(0, -1);
-			this._dirty = false;
+			this.dirty = false;
 		}
 
 		return this._clstr;
@@ -64,13 +81,16 @@ export class ClassNames {
 	 * key/value pair object.
 	 */
 	get obj(): any {
-		const obj = {};
 
-		for (const [key, val] of this._classes.entries()) {
-			obj[key] = val;
+		if (this._obj == null) {
+			this._obj = {};
+
+			for (const [key, val] of this._classes.entries()) {
+				this._obj[key] = val;
+			}
 		}
 
-		return obj;
+		return this._obj;
 	}
 
 	/**
@@ -103,7 +123,7 @@ export class ClassNames {
 				this.update(val);
 			}
 
-			this._dirty = true;
+			this.dirty = true;
 		}
 	}
 
@@ -138,7 +158,7 @@ export class ClassNames {
 		for (const s of val) {
 			if (this._classes.has(s)) {
 				this._classes.delete(s);
-				this._dirty = true;
+				this.dirty = true;
 			}
 		}
 	}
@@ -158,7 +178,7 @@ export class ClassNames {
 		for (const s of val) {
 			if (this._classes.has(s)) {
 				this._classes.set(s, !this._classes.get(s));
-				this._dirty = true;
+				this.dirty = true;
 			} else {
 				this.add(s);
 			}

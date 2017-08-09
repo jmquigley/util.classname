@@ -7,6 +7,8 @@ for a react component.
 **Kind**: global class  
 
 * [ClassNames](#ClassNames)
+    * [.dirty](#ClassNames+dirty) ⇒
+    * [.dirty](#ClassNames+dirty)
     * [.classes](#ClassNames+classes) ⇒ <code>Map.&lt;string, boolean&gt;</code>
     * [.classnames](#ClassNames+classnames) ⇒ <code>string</code>
     * [.length](#ClassNames+length) ⇒ <code>number</code>
@@ -18,6 +20,22 @@ for a react component.
     * [.remove(val)](#ClassNames+remove)
     * [.toggle(val)](#ClassNames+toggle)
     * [.update(obj)](#ClassNames+update)
+
+<a name="ClassNames+dirty"></a>
+
+### classNames.dirty ⇒
+**Kind**: instance property of [<code>ClassNames</code>](#ClassNames)  
+**Returns**: the current value of the dirty flag.  
+<a name="ClassNames+dirty"></a>
+
+### classNames.dirty
+When the Map object is modified the dirty state is set to true.
+
+**Kind**: instance property of [<code>ClassNames</code>](#ClassNames)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>boolean</code> | the state of the dirtfy flag |
 
 <a name="ClassNames+classes"></a>
 
