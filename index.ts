@@ -114,16 +114,18 @@ export class ClassNames {
 	public add(val: ClassValue, flag: boolean = true) {
 		if (val) {
 			if (typeof val === 'string') {
-				this._classes.set(val, flag);
+				const tmp = this._classes.get(val);
+				if (tmp == null || tmp !== flag) {
+					this._classes.set(val, flag);
+					this.dirty = true;
+				}
 			} else if (val instanceof Array) {
 				for (const s of val) {
-					this._classes.set(s, flag);
+					this.add(s);
 				}
 			} else {
 				this.update(val);
 			}
-
-			this.dirty = true;
 		}
 	}
 
@@ -211,8 +213,7 @@ export class ClassNames {
 
 		for (const s of val) {
 			if (this._classes.has(s)) {
-				this._classes.set(s, !this._classes.get(s));
-				this.dirty = true;
+				this.add(s, !this._classes.get(s));
 			} else {
 				this.add(s);
 			}
