@@ -255,3 +255,55 @@ test('Test the offIf predicate function', t => {
 	t.is(clsn.length, 4);
 	t.is(clsn.classnames, 'a b c d');
 });
+
+test('Test the onIfElse predicate function', t => {
+	const clsn = new ClassNames(['a', 'b', 'c']);
+
+	t.truthy(clsn);
+	t.is(clsn.length, 3);
+	t.is(clsn.classnames, 'a b c');
+
+	clsn.onIfElse(false)(
+		'c'
+	)(
+		'd'
+	);
+
+	t.is(clsn.length, 4);
+	t.is(clsn.classnames, 'a b d');
+
+	clsn.onIfElse(true)(
+		'c'
+	)(
+		'd'
+	);
+
+	t.is(clsn.length, 4);
+	t.is(clsn.classnames, 'a b c');
+});
+
+test('Test the offIfElse predicate function', t => {
+	const clsn = new ClassNames(['a', 'b', 'c']);
+
+	t.truthy(clsn);
+	t.is(clsn.length, 3);
+	t.is(clsn.classnames, 'a b c');
+
+	clsn.offIfElse(true)(
+		'c'
+	)(
+		'd'
+	);
+
+	t.is(clsn.length, 4);
+	t.is(clsn.classnames, 'a b d');
+
+	clsn.offIfElse(false)(
+		'c'
+	)(
+		'd'
+	);
+
+	t.is(clsn.length, 4);
+	t.is(clsn.classnames, 'a b c');
+});

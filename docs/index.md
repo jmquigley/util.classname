@@ -17,8 +17,10 @@ for a react component.
     * [.add(val, flag)](#ClassNames+add)
     * [.off(val)](#ClassNames+off)
     * [.offIf(predicate, keys)](#ClassNames+offIf)
+    * [.offIfElse(predicate, ifKeys, elseKeys)](#ClassNames+offIfElse)
     * [.on(val)](#ClassNames+on)
     * [.onIf(predicate, keys)](#ClassNames+onIf)
+    * [.onIfElse(predicate, ifKeys, elseKeys)](#ClassNames+onIfElse)
     * [.remove(val)](#ClassNames+remove)
     * [.toggle(val)](#ClassNames+toggle)
     * [.update(obj)](#ClassNames+update)
@@ -106,12 +108,42 @@ true, then the keys are turned off.  If the predicate is false, then
 the keys are turned on. This works to toggle a value based on a
 predicate.
 
+```javascript
+clsn.offIf(true)(
+    'toggle-off'
+);
+```
+
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | predicate | <code>boolean</code> | a boolean condition when true means that the items will be turned on in the Map |
 | keys | <code>string</code> | N number of strings to use for the toggle |
+
+<a name="ClassNames+offIfElse"></a>
+
+### classNames.offIfElse(predicate, ifKeys, elseKeys)
+Takes a given set of strings and removes them from the input Map if a given
+condition (predicate) is met.  If not met, then different set of strings are
+turned off.  This means that if one set is turned off, then the other set
+is turned on (toggled)
+
+```javascript
+clsn.offIfElse(true)(
+	   'toggle-off'
+)(
+	   'toggle-on'
+);
+```
+
+**Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| predicate | <code>boolean</code> | a boolean condition when true means that the items will be turned off in the set |
+| ifKeys | <code>string</code> | N number of strings to use for the if toggle |
+| elseKeys | <code>string</code> | N number of strings to use for the else toggle |
 
 <a name="ClassNames+on"></a>
 
@@ -133,12 +165,42 @@ true, then the keys are turned on.  If the predicate is false, then
 the keys are turned off. This works to toggle a value based on a
 predicate.
 
+```javascript
+clsn.onIf(true)(
+    'toggle-on'
+);
+```
+
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | predicate | <code>boolean</code> | a boolean condition when true means that the items will be turned on in the Map |
 | keys | <code>string</code> | N number of strings to use for the toggle |
+
+<a name="ClassNames+onIfElse"></a>
+
+### classNames.onIfElse(predicate, ifKeys, elseKeys)
+Takes a given set of strings and adds them to the input Map if a given
+condition (predicate) is met.  If not met, then different set of strings are
+turned off.  This means that if one set is turned on, then the other set
+is turned off (toggled)
+
+```javascript
+clsn.onIfElse(true)(
+	   'toggle-on'
+)(
+	   'toggle-off'
+);
+```
+
+**Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| predicate | <code>boolean</code> | a boolean condition when true means that the items will be turned off in the set |
+| ifKeys | <code>string</code> | N number of strings to use for the if toggle |
+| elseKeys | <code>string</code> | N number of strings to use for the else toggle |
 
 <a name="ClassNames+remove"></a>
 

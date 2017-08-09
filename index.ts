@@ -135,7 +135,9 @@ export class ClassNames {
 	 * @param val {ClassValueStr} a value to turn on in the class name Map
 	 */
 	public off(val: ClassValueStr) {
-		this.add(val, false);
+		for (const s of val) {
+			this.add(s, false);
+		}
 	}
 
 	/**
@@ -143,6 +145,13 @@ export class ClassNames {
 	 * true, then the keys are turned off.  If the predicate is false, then
 	 * the keys are turned on. This works to toggle a value based on a
 	 * predicate.
+	 *
+	 * ```javascript
+	 * clsn.offIf(true)(
+	 *     'toggle-off'
+	 * );
+	 * ```
+	 *
 	 * @param predicate {boolean} a boolean condition when true means that the
 	 * items will be turned on in the Map
 	 * @param keys {string} N number of strings to use for the toggle
@@ -156,12 +165,47 @@ export class ClassNames {
 	}
 
 	/**
+	 * Takes a given set of strings and removes them from the input Map if a given
+	 * condition (predicate) is met.  If not met, then different set of strings are
+	 * turned off.  This means that if one set is turned off, then the other set
+	 * is turned on (toggled)
+	 *
+	 * ```javascript
+	 * clsn.offIfElse(true)(
+	 * 	   'toggle-off'
+	 * )(
+	 * 	   'toggle-on'
+	 * );
+	 * ```
+	 *
+	 * @param predicate {boolean} a boolean condition when true means that the
+	 * items will be turned off in the set
+	 * @param ifKeys {string} N number of strings to use for the if toggle
+	 * @param elseKeys {string} N number of strings to use for the else toggle
+	 */
+	public offIfElse(predicate: boolean) {
+		return (...ifKeys: string[]) => {
+			return (...elseKeys: string[]) => {
+				if (predicate) {
+					this.off([...ifKeys]);
+					this.on([...elseKeys]);
+				} else {
+					this.on([...ifKeys]);
+					this.off([...elseKeys]);
+				}
+			};
+		};
+	}
+
+	/**
 	 * Sets a key to "on" (true).  If the key doesn't exist it is created in
 	 * the map.
 	 * @param val {ClassValueStr} a value to turn on in the class name Map
 	 */
 	public on(val: ClassValueStr) {
-		this.add(val, true);
+		for (const s of val) {
+			this.add(s, true);
+		}
 	}
 
 	/**
@@ -169,6 +213,13 @@ export class ClassNames {
 	 * true, then the keys are turned on.  If the predicate is false, then
 	 * the keys are turned off. This works to toggle a value based on a
 	 * predicate.
+	 *
+	 * ```javascript
+	 * clsn.onIf(true)(
+	 *     'toggle-on'
+	 * );
+	 * ```
+	 *
 	 * @param predicate {boolean} a boolean condition when true means that the
 	 * items will be turned on in the Map
 	 * @param keys {string} N number of strings to use for the toggle
@@ -178,6 +229,40 @@ export class ClassNames {
 			for (const key of keys) {
 				this.add(key, predicate);
 			}
+		};
+	}
+
+	/**
+	 * Takes a given set of strings and adds them to the input Map if a given
+	 * condition (predicate) is met.  If not met, then different set of strings are
+	 * turned off.  This means that if one set is turned on, then the other set
+	 * is turned off (toggled)
+	 *
+	 * ```javascript
+	 * clsn.onIfElse(true)(
+	 * 	   'toggle-on'
+	 * )(
+	 * 	   'toggle-off'
+	 * );
+	 * ```
+	 *
+	 * @param predicate {boolean} a boolean condition when true means that the
+	 * items will be turned off in the set
+	 * @param ifKeys {string} N number of strings to use for the if toggle
+	 * @param elseKeys {string} N number of strings to use for the else toggle
+	 */
+	public onIfElse(predicate: boolean) {
+		return (...ifKeys: string[]) => {
+			return (...elseKeys: string[]) => {
+
+				if (predicate) {
+					this.on([...ifKeys]);
+					this.off([...elseKeys]);
+				} else {
+					this.off([...ifKeys]);
+					this.on([...elseKeys]);
+				}
+			};
 		};
 	}
 
