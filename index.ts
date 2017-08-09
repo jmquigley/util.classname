@@ -137,12 +137,46 @@ export class ClassNames {
 	}
 
 	/**
+	 * Takes a condition (predicate) and a set of keys.  If the predicate is
+	 * true, then the keys are turned off.  If the predicate is false, then
+	 * the keys are turned on. This works to toggle a value based on a
+	 * predicate.
+	 * @param predicate {boolean} a boolean condition when true means that the
+	 * items will be turned on in the Map
+	 * @param keys {string} N number of strings to use for the toggle
+	 */
+	public offIf(predicate: boolean) {
+		return (...keys: string[]) => {
+			for (const key of keys) {
+				this.add(key, !predicate);
+			}
+		};
+	}
+
+	/**
 	 * Sets a key to "on" (true).  If the key doesn't exist it is created in
 	 * the map.
 	 * @param val {ClassValueStr} a value to turn on in the class name Map
 	 */
 	public on(val: ClassValueStr) {
 		this.add(val, true);
+	}
+
+	/**
+	 * Takes a condition (predicate) and a set of keys.  If the predicate is
+	 * true, then the keys are turned on.  If the predicate is false, then
+	 * the keys are turned off. This works to toggle a value based on a
+	 * predicate.
+	 * @param predicate {boolean} a boolean condition when true means that the
+	 * items will be turned on in the Map
+	 * @param keys {string} N number of strings to use for the toggle
+	 */
+	public onIf(predicate: boolean) {
+		return (...keys: string[]) => {
+			for (const key of keys) {
+				this.add(key, predicate);
+			}
+		};
 	}
 
 	/**

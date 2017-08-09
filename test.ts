@@ -211,3 +211,47 @@ test('Test retrieval of key/value object from ClassNames instance', t => {
 	t.true(obj['c']);
 	t.false(obj['d']);
 });
+
+test('Test the onIf predicate function', t => {
+	const clsn = new ClassNames(['a', 'b', 'c']);
+
+	t.truthy(clsn);
+	t.is(clsn.length, 3);
+	t.is(clsn.classnames, 'a b c');
+
+	clsn.onIf(true)(
+		'd'
+	);
+
+	t.is(clsn.length, 4);
+	t.is(clsn.classnames, 'a b c d');
+
+	clsn.onIf(false)(
+		'd'
+	);
+
+	t.is(clsn.length, 4);
+	t.is(clsn.classnames, 'a b c');
+});
+
+test('Test the offIf predicate function', t => {
+	const clsn = new ClassNames(['a', 'b', 'c', 'd']);
+
+	t.truthy(clsn);
+	t.is(clsn.length, 4);
+	t.is(clsn.classnames, 'a b c d');
+
+	clsn.offIf(true)(
+		'd'
+	);
+
+	t.is(clsn.length, 4);
+	t.is(clsn.classnames, 'a b c');
+
+	clsn.offIf(false)(
+		'd'
+	);
+
+	t.is(clsn.length, 4);
+	t.is(clsn.classnames, 'a b c d');
+});

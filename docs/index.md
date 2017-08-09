@@ -16,7 +16,9 @@ for a react component.
     * [.size](#ClassNames+size) ⇒ <code>number</code>
     * [.add(val, flag)](#ClassNames+add)
     * [.off(val)](#ClassNames+off)
+    * [.offIf(predicate, keys)](#ClassNames+offIf)
     * [.on(val)](#ClassNames+on)
+    * [.onIf(predicate, keys)](#ClassNames+onIf)
     * [.remove(val)](#ClassNames+remove)
     * [.toggle(val)](#ClassNames+toggle)
     * [.update(obj)](#ClassNames+update)
@@ -96,6 +98,21 @@ the map.
 | --- | --- | --- |
 | val | <code>ClassValueStr</code> | a value to turn on in the class name Map |
 
+<a name="ClassNames+offIf"></a>
+
+### classNames.offIf(predicate, keys)
+Takes a condition (predicate) and a set of keys.  If the predicate is
+true, then the keys are turned off.  If the predicate is false, then
+the keys are turned on. This works to toggle a value based on a
+predicate.
+
+**Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| predicate | <code>boolean</code> | a boolean condition when true means that the items will be turned on in the Map |
+| keys | <code>string</code> | N number of strings to use for the toggle |
+
 <a name="ClassNames+on"></a>
 
 ### classNames.on(val)
@@ -107,6 +124,21 @@ the map.
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>ClassValueStr</code> | a value to turn on in the class name Map |
+
+<a name="ClassNames+onIf"></a>
+
+### classNames.onIf(predicate, keys)
+Takes a condition (predicate) and a set of keys.  If the predicate is
+true, then the keys are turned on.  If the predicate is false, then
+the keys are turned off. This works to toggle a value based on a
+predicate.
+
+**Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| predicate | <code>boolean</code> | a boolean condition when true means that the items will be turned on in the Map |
+| keys | <code>string</code> | N number of strings to use for the toggle |
 
 <a name="ClassNames+remove"></a>
 

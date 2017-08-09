@@ -98,7 +98,9 @@ const clsn = new ClassNames({a: true, b: true, c: false});
 #### methods
 - [add()](docs/index.md#ClassNames+add)
 - [off()](docs/index.md#ClassNames+off)
+- [offIf()](docs/index.md#ClassNames+offIf)
 - [on()](docs/index.md#ClassNames+on)
+- [onIf()](docs/index.md#ClassNames+onIf)
 - [remove()](docs/index.md#ClassNames+remove)
 - [toggle()](docs/index.md#ClassNames+toggle)
 - [update()](docs/index.md#ClassNames+update)
