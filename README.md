@@ -71,6 +71,8 @@ clsn.toggle('b');
 import {ClassNames} from 'util.classnames';
 
 const clsn = new ClassNames('a');
+
+// clsn.classnames => 'a'
 ```
 
 #### Initialize with an object
@@ -79,17 +81,24 @@ const clsn = new ClassNames('a');
 import {ClassNames} from 'util.classnames';
 
 const clsn = new ClassNames({a: true, b: true, c: false});
+
+// clsn.classnames => 'a b c'
 ```
 
 
 ## API
 
-- [classes()](docs/index.md#ClassNames+classes)
-- [classnames()](docs/index.md#ClassNames+classnames)
-- [length()](docs/index.md#ClassNames+length)
-- [size()](docs/index.md#ClassNames+size)
+#### attributes
+- [.classes](docs/index.md#ClassNames+classes)
+- [.classnames](docs/index.md#ClassNames+classnames)
+- [.length](docs/index.md#ClassNames+length)
+- [.obj](docs/index.md#ClassNames+obj)
+- [.size](docs/index.md#ClassNames+size)
+
+#### methods
 - [add()](docs/index.md#ClassNames+add)
 - [off()](docs/index.md#ClassNames+off)
 - [on()](docs/index.md#ClassNames+on)
 - [remove()](docs/index.md#ClassNames+remove)
 - [toggle()](docs/index.md#ClassNames+toggle)
+- [update()](docs/index.md#ClassNames+update)

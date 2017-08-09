@@ -58,6 +58,18 @@ test('Test adding a name and turning if off in a ClassNames', t => {
 	t.is(clsn.classnames, '');
 });
 
+test('Test adding a null value to the ClassNames object', t => {
+	const clsn = new ClassNames();
+
+	t.truthy(clsn);
+	t.is(clsn.length, 0);
+	t.is(clsn.classnames, '');
+
+	clsn.add(null);
+	t.is(clsn.length, 0);
+	t.is(clsn.classnames, '');
+});
+
 test('Test turning a name on in an empty ClassNames object', t => {
 	const clsn = new ClassNames();
 
@@ -83,6 +95,18 @@ test('Test removing a value from a ClassNames object', t => {
 	t.is(clsn.classnames, 'a b');
 });
 
+test('Test removing a list of values from a ClassNames object', t => {
+	const clsn = new ClassNames(['a', 'b', 'c', 'd', 'e']);
+
+	t.truthy(clsn);
+	t.is(clsn.length, 5);
+	t.is(clsn.classnames, 'a b c d e');
+
+	clsn.remove(['a', 'c', 'e']);
+	t.is(clsn.length, 2);
+	t.is(clsn.classnames, 'b d');
+});
+
 test('Test toggling a value on and off', t => {
 	const clsn = new ClassNames('a');
 
@@ -95,6 +119,19 @@ test('Test toggling a value on and off', t => {
 	t.is(clsn.classnames, '');
 
 	clsn.toggle('a');
+	t.is(clsn.length, 1);
+	t.is(clsn.classnames, 'a');
+});
+
+test('Test toggling a value that is not in the map', t => {
+	const clsn = new ClassNames();
+
+	t.truthy(clsn);
+	t.is(clsn.length, 0);
+	t.is(clsn.classnames, '');
+
+	clsn.toggle('a');
+
 	t.is(clsn.length, 1);
 	t.is(clsn.classnames, 'a');
 });
@@ -115,4 +152,62 @@ test('Test retrieving the same string over and over', t => {
 		t.is(clsn.classnames, 'a b c');
 		t.is(clsn.length, 3);
 	}
+});
+
+test('Test adding an object with different state values', t => {
+	const clsn = new ClassNames();
+
+	t.truthy(clsn)	;
+	t.is(clsn.classnames, '');
+	t.is(clsn.length, 0);
+
+	clsn.add({
+		a: true,
+		b: false
+	});
+
+	t.is(clsn.length, 2);
+	t.is(clsn.classnames, 'a');
+	t.false(clsn.classes.get('b'));
+});
+
+test('Test updating values in an existing ClassNames object', t => {
+	const clsn = new ClassNames(['a', 'b', 'c']);
+
+	t.truthy(clsn);
+	t.is(clsn.length, 3);
+	t.is(clsn.classnames, 'a b c');
+
+	clsn.update({
+		a: false,
+		c: false
+	});
+
+	t.is(clsn.length, 3);
+	t.is(clsn.classnames, 'b');
+});
+
+test('Test creating the classnames string with a differnet delimiter', t => {
+	const clsn = new ClassNames(['a', 'b', 'c'], '@');
+
+	t.truthy(clsn);
+	t.is(clsn.length, 3);
+	t.is(clsn.classnames, 'a@b@c');
+});
+
+test('Test retrieval of key/value object from ClassNames instance', t => {
+	const clsn = new ClassNames(['a', 'b', 'c']);
+
+	clsn.off('d');
+
+	t.truthy(clsn);
+	t.is(clsn.length, 4);
+	t.is(clsn.classnames, 'a b c');
+
+	const obj = clsn.obj;
+
+	t.true(obj['a']);
+	t.true(obj['b']);
+	t.true(obj['c']);
+	t.false(obj['d']);
 });

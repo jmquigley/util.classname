@@ -4,7 +4,8 @@ export interface ClassObject {
 	[key: string]: boolean;
 }
 
-export type ClassValue = string | string[] | ClassObject;
+export type ClassValueStr = string | string[];
+export type ClassValue = ClassValueStr | ClassObject;
 
 /**
  * This class is used to manage a set of class name strings used by CSS
@@ -23,7 +24,7 @@ export class ClassNames {
 	}
 
 	/**
-	 * The current class objects in a Map of the form <string, boolean>
+	 * @return {Map<string, boolean>} the current class objects in a Map
 	 */
 	get classes(): Map<string, boolean> {
 		return this._classes;
@@ -52,10 +53,24 @@ export class ClassNames {
 	}
 
 	/**
-	 * @returns {number} the total number of class names in the map
+	 * @return {number} the total number of class names in the map
 	 */
 	get length(): number {
 		return this._classes.size;
+	}
+
+	/**
+	 * @return {any} converts the Map object of <string, boolean> into a
+	 * key/value pair object.
+	 */
+	get obj(): any {
+		const obj = {};
+
+		for (const [key, val] of this._classes.entries()) {
+			obj[key] = val;
+		}
+
+		return obj;
 	}
 
 	/**
@@ -69,6 +84,9 @@ export class ClassNames {
 	 * Adds a new value to the class names map.  It can accept a string, an
 	 * array of strings, or a simple key/value object (in the form
 	 * <string, boolean>).  By default the key is added in the "on" state.
+	 * The default flag state is only used when adding a "string" or array
+	 * of strings.  If an object with key/value paris are given, then it is
+	 * added with the given state values in the object.
 	 * @param val {ClassValue} a value to add to the class name Map
 	 * @param flag {boolean} the initial value to set for each key when
 	 * they are added.  Set to true (on) by default.
@@ -82,51 +100,82 @@ export class ClassNames {
 					this._classes.set(s, flag);
 				}
 			} else {
-				for (const key in val) {
-					if (val.hasOwnProperty(key)) {
-						this._classes.set(key, val[key]);
-					}
-				}
+				this.update(val);
 			}
-		}
 
-		this._dirty = true;
+			this._dirty = true;
+		}
 	}
 
 	/**
 	 * Sets a key to "off" (false).  If the key doesn't exist it is created in
 	 * the map.
-	 * @param val {ClassValue} a value to turn on in the class name Map
+	 * @param val {ClassValueStr} a value to turn on in the class name Map
 	 */
-	public off(val: ClassValue) {
+	public off(val: ClassValueStr) {
 		this.add(val, false);
 	}
 
 	/**
 	 * Sets a key to "on" (true).  If the key doesn't exist it is created in
 	 * the map.
-	 * @param val {ClassValue} a value to turn on in the class name Map
+	 * @param val {ClassValueStr} a value to turn on in the class name Map
 	 */
-	public on(val: ClassValue) {
+	public on(val: ClassValueStr) {
 		this.add(val, true);
 	}
 
 	/**
 	 * Permanently removes a class name key from the map.
-	 * @param val {string} a single string key to remove from the Map
+	 * @param val {ClassValueStr} a single string key to remove from the Map
 	 */
-	public remove(val: string) {
-		this._classes.delete(val);
-		this._dirty = true;
+	public remove(val: ClassValueStr) {
+
+		if (typeof val === 'string') {
+			val = [val];
+		}
+
+		for (const s of val) {
+			if (this._classes.has(s)) {
+				this._classes.delete(s);
+				this._dirty = true;
+			}
+		}
 	}
 
 	/**
 	 * Switches a key's value to it's opposite. (on -> off or off -> on)
+	 * If the key requested doesn't exist, then it is added in the initial
+	 * on state.
 	 * @param val {string} a single string key to toggle.
 	 */
-	public toggle(val: string) {
-		this._classes.set(val, !this._classes.get(val));
-		this._dirty = true;
+	public toggle(val: ClassValueStr) {
+
+		if (typeof val === 'string') {
+			val = [val];
+		}
+
+		for (const s of val) {
+			if (this._classes.has(s)) {
+				this._classes.set(s, !this._classes.get(s));
+				this._dirty = true;
+			} else {
+				this.add(s);
+			}
+		}
 	}
 
+	/**
+	 * Takes an input object of type <string, boolean> and udpates the
+	 * keys in the Map with the given values.
+	 * @param obj {ClassObject} an object with key/value pairs that should
+	 * be set in the Map.
+	 */
+	public update(obj: ClassObject) {
+		for (const key in obj) {
+			if (obj.hasOwnProperty(key)) {
+				this.add(key, obj[key]);
+			}
+		}
+	}
 }

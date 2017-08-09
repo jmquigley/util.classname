@@ -7,22 +7,23 @@ for a react component.
 **Kind**: global class  
 
 * [ClassNames](#ClassNames)
-    * [.classes](#ClassNames+classes)
+    * [.classes](#ClassNames+classes) ⇒ <code>Map.&lt;string, boolean&gt;</code>
     * [.classnames](#ClassNames+classnames) ⇒ <code>string</code>
     * [.length](#ClassNames+length) ⇒ <code>number</code>
+    * [.obj](#ClassNames+obj) ⇒ <code>any</code>
     * [.size](#ClassNames+size) ⇒ <code>number</code>
     * [.add(val, flag)](#ClassNames+add)
     * [.off(val)](#ClassNames+off)
     * [.on(val)](#ClassNames+on)
     * [.remove(val)](#ClassNames+remove)
     * [.toggle(val)](#ClassNames+toggle)
+    * [.update(obj)](#ClassNames+update)
 
 <a name="ClassNames+classes"></a>
 
-### classNames.classes
-The current class objects in a Map of the form <string, boolean>
-
+### classNames.classes ⇒ <code>Map.&lt;string, boolean&gt;</code>
 **Kind**: instance property of [<code>ClassNames</code>](#ClassNames)  
+**Returns**: <code>Map.&lt;string, boolean&gt;</code> - the current class objects in a Map  
 <a name="ClassNames+classnames"></a>
 
 ### classNames.classnames ⇒ <code>string</code>
@@ -37,6 +38,12 @@ the object.
 ### classNames.length ⇒ <code>number</code>
 **Kind**: instance property of [<code>ClassNames</code>](#ClassNames)  
 **Returns**: <code>number</code> - the total number of class names in the map  
+<a name="ClassNames+obj"></a>
+
+### classNames.obj ⇒ <code>any</code>
+**Kind**: instance property of [<code>ClassNames</code>](#ClassNames)  
+**Returns**: <code>any</code> - converts the Map object of <string, boolean> into a
+key/value pair object.  
 <a name="ClassNames+size"></a>
 
 ### classNames.size ⇒ <code>number</code>
@@ -48,6 +55,9 @@ the object.
 Adds a new value to the class names map.  It can accept a string, an
 array of strings, or a simple key/value object (in the form
 <string, boolean>).  By default the key is added in the "on" state.
+The default flag state is only used when adding a "string" or array
+of strings.  If an object with key/value paris are given, then it is
+added with the given state values in the object.
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
 
@@ -66,7 +76,7 @@ the map.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| val | <code>ClassValue</code> | a value to turn on in the class name Map |
+| val | <code>ClassValueStr</code> | a value to turn on in the class name Map |
 
 <a name="ClassNames+on"></a>
 
@@ -78,7 +88,7 @@ the map.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| val | <code>ClassValue</code> | a value to turn on in the class name Map |
+| val | <code>ClassValueStr</code> | a value to turn on in the class name Map |
 
 <a name="ClassNames+remove"></a>
 
@@ -89,16 +99,30 @@ Permanently removes a class name key from the map.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| val | <code>string</code> | a single string key to remove from the Map |
+| val | <code>ClassValueStr</code> | a single string key to remove from the Map |
 
 <a name="ClassNames+toggle"></a>
 
 ### classNames.toggle(val)
 Switches a key's value to it's opposite. (on -> off or off -> on)
+If the key requested doesn't exist, then it is added in the initial
+on state.
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | val | <code>string</code> | a single string key to toggle. |
+
+<a name="ClassNames+update"></a>
+
+### classNames.update(obj)
+Takes an input object of type <string, boolean> and udpates the
+keys in the Map with the given values.
+
+**Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| obj | <code>ClassObject</code> | an object with key/value pairs that should be set in the Map. |
 
