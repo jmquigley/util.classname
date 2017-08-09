@@ -135,6 +135,11 @@ export class ClassNames {
 	 * @param val {ClassValueStr} a value to turn on in the class name Map
 	 */
 	public off(val: ClassValueStr) {
+
+		if (typeof val === 'string') {
+			val = [val];
+		}
+
 		for (const s of val) {
 			this.add(s, false);
 		}
@@ -203,6 +208,11 @@ export class ClassNames {
 	 * @param val {ClassValueStr} a value to turn on in the class name Map
 	 */
 	public on(val: ClassValueStr) {
+
+		if (typeof val === 'string') {
+			val = [val];
+		}
+
 		for (const s of val) {
 			this.add(s, true);
 		}
