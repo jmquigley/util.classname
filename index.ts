@@ -121,7 +121,7 @@ export class ClassNames {
 				}
 			} else if (val instanceof Array) {
 				for (const s of val) {
-					this.add(s);
+					this.add(s, flag);
 				}
 			} else {
 				this.update(val);
@@ -142,14 +142,7 @@ export class ClassNames {
 	 * @param val {ClassValueStr} a value to turn on in the class name Map
 	 */
 	public off(val: ClassValueStr) {
-
-		if (typeof val === 'string') {
-			val = [val];
-		}
-
-		for (const s of val) {
-			this.add(s, false);
-		}
+		this.add(val, false);
 	}
 
 	/**
@@ -215,14 +208,7 @@ export class ClassNames {
 	 * @param val {ClassValueStr} a value to turn on in the class name Map
 	 */
 	public on(val: ClassValueStr) {
-
-		if (typeof val === 'string') {
-			val = [val];
-		}
-
-		for (const s of val) {
-			this.add(s, true);
-		}
+		this.add(val, true);
 	}
 
 	/**
