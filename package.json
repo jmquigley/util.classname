@@ -1,6 +1,6 @@
 {
   "name": "util.classnames",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "jmquigley <jmquigley@outlook.com>",
   "description": "A class to manage CSS classes in a react component",
   "private": false,
