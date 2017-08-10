@@ -97,6 +97,7 @@ const clsn = new ClassNames({a: true, b: true, c: false});
 
 #### methods
 - [add()](docs/index.md#ClassNames+add)
+- [delete()](docs/index.md#ClassNames+delete)
 - [off()](docs/index.md#ClassNames+off)
 - [offIf()](docs/index.md#ClassNames+offIf)
 - [offIfElse()](docs/index.md#ClassNames=offIfElse)
@@ -104,5 +105,7 @@ const clsn = new ClassNames({a: true, b: true, c: false});
 - [onIf()](docs/index.md#ClassNames+onIf)
 - [onIfElse()](docs/index.md#ClassNames=onIfElse)
 - [remove()](docs/index.md#ClassNames+remove)
+- [reset()](docs/index.md#ClassNames+reset)
+- [resetAll()](docs/index.md#ClassNames+resetAll)
 - [toggle()](docs/index.md#ClassNames+toggle)
 - [update()](docs/index.md#ClassNames+update)
