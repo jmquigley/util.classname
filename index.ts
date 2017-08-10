@@ -130,6 +130,13 @@ export class ClassNames {
 	}
 
 	/**
+	 * Permanently removes a class name key from the map.  This is an alias
+	 * for the remove method.
+	 * @param val {ClassValueStr} a single string key to remove from the Map
+	 */
+	public delete = this.remove;
+
+	/**
 	 * Sets a key to "off" (false).  If the key doesn't exist it is created in
 	 * the map.
 	 * @param val {ClassValueStr} a value to turn on in the class name Map
@@ -292,6 +299,20 @@ export class ClassNames {
 				this.dirty = true;
 			}
 		}
+	}
+
+	/**
+	 * Takes a string or list of string keys and resets their values to the
+	 * "off"" state.  This is an alias for the "off" function.
+	 * @param val {ClassValueStr} the string keys to turn off
+	 */
+	public reset = this.off;
+
+	/**
+	 * Resets all keys back to their "off" state.
+	 */
+	public resetAll() {
+		this.off(Array.from(this._classes.keys()));
 	}
 
 	/**

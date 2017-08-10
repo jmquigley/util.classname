@@ -307,3 +307,29 @@ test('Test the offIfElse predicate function', t => {
 	t.is(clsn.length, 4);
 	t.is(clsn.classnames, 'a b c');
 });
+
+test('Test the resetAll function', t => {
+	const clsn = new ClassNames(['a', 'b', 'c']);
+
+	t.truthy(clsn);
+	t.is(clsn.length, 3);
+	t.is(clsn.classnames, 'a b c');
+
+	clsn.resetAll();
+
+	t.is(clsn.length, 3);
+	t.is(clsn.classnames, '');
+});
+
+test('Test the reset function', t => {
+	const clsn = new ClassNames(['a', 'b', 'c']);
+
+	t.truthy(clsn);
+	t.is(clsn.length, 3);
+	t.is(clsn.classnames, 'a b c');
+
+	clsn.reset(['b', 'c']);
+
+	t.is(clsn.length, 3);
+	t.is(clsn.classnames, 'a');
+});

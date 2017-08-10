@@ -7,6 +7,8 @@ for a react component.
 **Kind**: global class  
 
 * [ClassNames](#ClassNames)
+    * [.delete](#ClassNames+delete)
+    * [.reset](#ClassNames+reset)
     * [.dirty](#ClassNames+dirty) ⇒
     * [.dirty](#ClassNames+dirty)
     * [.classes](#ClassNames+classes) ⇒ <code>Map.&lt;string, boolean&gt;</code>
@@ -22,8 +24,33 @@ for a react component.
     * [.onIf(predicate, keys)](#ClassNames+onIf)
     * [.onIfElse(predicate, ifKeys, elseKeys)](#ClassNames+onIfElse)
     * [.remove(val)](#ClassNames+remove)
+    * [.resetAll()](#ClassNames+resetAll)
     * [.toggle(val)](#ClassNames+toggle)
     * [.update(obj)](#ClassNames+update)
+
+<a name="ClassNames+delete"></a>
+
+### classNames.delete
+Permanently removes a class name key from the map.  This is an alias
+for the remove method.
+
+**Kind**: instance property of [<code>ClassNames</code>](#ClassNames)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>ClassValueStr</code> | a single string key to remove from the Map |
+
+<a name="ClassNames+reset"></a>
+
+### classNames.reset
+Takes a string or list of string keys and resets their values to the
+"off"" state.  This is an alias for the "off" function.
+
+**Kind**: instance property of [<code>ClassNames</code>](#ClassNames)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>ClassValueStr</code> | the string keys to turn off |
 
 <a name="ClassNames+dirty"></a>
 
@@ -213,6 +240,12 @@ Permanently removes a class name key from the map.
 | --- | --- | --- |
 | val | <code>ClassValueStr</code> | a single string key to remove from the Map |
 
+<a name="ClassNames+resetAll"></a>
+
+### classNames.resetAll()
+Resets all keys back to their "off" state.
+
+**Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
 <a name="ClassNames+toggle"></a>
 
 ### classNames.toggle(val)
