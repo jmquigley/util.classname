@@ -15,7 +15,7 @@ This module uses [yarn](https://yarnpkg.com/en/) to manage dependencies and run 
 
 To install as an application dependency:
 ```
-$ yarn add --dev util.toggle
+$ yarn add --dev util.classnames
 ```
 
 To build the app and run all tests:
