@@ -1,6 +1,6 @@
 {
   "name": "util.classnames",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "author": "jmquigley <jmquigley@outlook.com>",
   "description": "A class to manage CSS classes in a react component",
   "main": "./index.js",
@@ -28,7 +28,7 @@
   },
   "pkgwrap": {
     "cleanup": [
-			"docs/",
+      "docs/",
       "index.d.ts",
       "index.js",
       "test.d.ts",
