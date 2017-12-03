@@ -13,10 +13,7 @@
     "url": "https://github.com/jmquigley/util.classnames/issues"
   },
   "engines": {
-    "node": ">=7.5"
-  },
-  "dependencies": {
-    "util.pkgwrap": "0.0.73"
+    "node": ">=7.x"
   },
   "devDependencies": {
     "@types/node": "^8.0.53",
@@ -29,13 +26,14 @@
   "main": "./index.js",
   "types": "./index.d.ts",
   "scripts": {
-    "all": "yarn install && yarn run clean && yarn run lint && yarn run build && yarn test && yarn run docs && yarn run report",
-    "build": "pkgwrap --build",
+    "all": "yarn install && yarn run build && yarn test && yarn run docs && yarn run report",
+    "build": "yarn run clean && yarn run lint && pkgwrap --build",
     "clean": "pkgwrap --clean",
     "coverage": "pkgwrap --coverage",
     "docs": "pkgwrap --docs",
     "lint": "pkgwrap --lint",
-    "postinstall": "pkgwrap --postinstall",
+    "preinstall": "yarn global add util.pkgwrap",
+    "prepublishOnly": "yarn run all",
     "report": "pkgwrap --reporting",
     "test": "pkgwrap --testing --ava"
   }
