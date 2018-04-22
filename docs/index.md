@@ -17,6 +17,7 @@ for a react component.
     * [.obj](#ClassNames+obj) ⇒ <code>any</code>
     * [.size](#ClassNames+size) ⇒ <code>number</code>
     * [.add(val, flag)](#ClassNames+add)
+    * [.clear()](#ClassNames+clear)
     * [.off(val)](#ClassNames+off)
     * [.offIf(predicate, keys)](#ClassNames+offIf)
     * [.offIfElse(predicate, ifKeys, elseKeys)](#ClassNames+offIfElse)
@@ -115,6 +116,12 @@ added with the given state values in the object.
 | val | <code>ClassValue</code> |  | a value to add to the class name Map |
 | flag | <code>boolean</code> | <code>true</code> | the initial value to set for each key when they are added.  Set to true (on) by default. |
 
+<a name="ClassNames+clear"></a>
+
+### classNames.clear()
+Removes all entries from the class object an resets it to empty
+
+**Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
 <a name="ClassNames+off"></a>
 
 ### classNames.off(val)

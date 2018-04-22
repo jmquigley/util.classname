@@ -333,3 +333,18 @@ test('Test the reset function', t => {
 	t.is(clsn.length, 3);
 	t.is(clsn.classnames, 'a');
 });
+
+test('Test the clear function', t => {
+	const clsn = new ClassNames(['a', 'b', 'c']);
+
+	t.truthy(clsn);
+	t.is(clsn.length, 3);
+	t.is(clsn.classnames, 'a b c');
+
+	clsn.clear();
+
+	t.truthy(clsn);
+	t.is(clsn.length, 0);
+	t.is(clsn.classnames, '');
+	t.false(clsn.dirty);
+});

@@ -130,6 +130,16 @@ export class ClassNames {
 	}
 
 	/**
+	 * Removes all entries from the class object an resets it to empty
+	 */
+	public clear() {
+		this._classes.clear();
+		this._clstr = '';
+		this._dirty = false;
+		this._obj = null;
+	}
+
+	/**
 	 * Permanently removes a class name key from the map.  This is an alias
 	 * for the remove method.
 	 * @param val {ClassValueStr} a single string key to remove from the Map
