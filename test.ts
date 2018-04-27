@@ -348,3 +348,29 @@ test('Test the clear function', t => {
 	t.is(clsn.classnames, '');
 	t.false(clsn.dirty);
 });
+
+test('Test contains function', t => {
+	const clsn = new ClassNames(['a', 'b', 'c']);
+
+	t.truthy(clsn);
+	t.is(clsn.length, 3);
+	t.is(clsn.classnames, 'a b c');
+	clsn.off('c');
+
+	t.true(clsn.contains('a'));  // on
+	t.false(clsn.contains('z')); // undefined
+	t.false(clsn.contains('c')); // off
+});
+
+test('Test the has function', t => {
+	const clsn = new ClassNames(['a', 'b', 'c']);
+
+	t.truthy(clsn);
+	t.is(clsn.length, 3);
+	t.is(clsn.classnames, 'a b c');
+	clsn.off('c');
+
+	t.true(clsn.has('a'));  // on
+	t.false(clsn.has('z')); // undefined
+	t.true(clsn.has('c'));  // off, but exists
+});

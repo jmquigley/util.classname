@@ -18,6 +18,8 @@ for a react component.
     * [.size](#ClassNames+size) ⇒ <code>number</code>
     * [.add(val, flag)](#ClassNames+add)
     * [.clear()](#ClassNames+clear)
+    * [.contains(key)](#ClassNames+contains) ⇒
+    * [.has(key)](#ClassNames+has) ⇒
     * [.off(val)](#ClassNames+off)
     * [.offIf(predicate, keys)](#ClassNames+offIf)
     * [.offIfElse(predicate, ifKeys, elseKeys)](#ClassNames+offIfElse)
@@ -122,6 +124,31 @@ added with the given state values in the object.
 Removes all entries from the class object an resets it to empty
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+<a name="ClassNames+contains"></a>
+
+### classNames.contains(key) ⇒
+Checks if the class name is in the map and is currently active.
+
+**Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+**Returns**: true if the class name is found and is on, otherwise false  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>string</code> | the name of the class key to find |
+
+<a name="ClassNames+has"></a>
+
+### classNames.has(key) ⇒
+Checks if the given key is in the class list regardless if it is on
+or off.  It just needs to be in the map.
+
+**Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+**Returns**: true if the key is in the class list otherwise false.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>string</code> | the name of the class key to search for in the map |
+
 <a name="ClassNames+off"></a>
 
 ### classNames.off(val)

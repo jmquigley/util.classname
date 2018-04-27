@@ -140,11 +140,31 @@ export class ClassNames {
 	}
 
 	/**
+	 * Checks if the class name is in the map and is currently active.
+	 * @param key {string} the name of the class key to find
+	 * @return true if the class name is found and is on, otherwise false
+	 */
+	public contains(key: string): boolean {
+		const val = this._classes.get(key);
+		return val !== undefined && val !== false;
+	}
+
+	/**
 	 * Permanently removes a class name key from the map.  This is an alias
 	 * for the remove method.
 	 * @param val {ClassValueStr} a single string key to remove from the Map
 	 */
 	public delete = this.remove;
+
+	/**
+	 * Checks if the given key is in the class list regardless if it is on
+	 * or off.  It just needs to be in the map.
+	 * @param key {string} the name of the class key to search for in the map
+	 * @return true if the key is in the class list otherwise false.
+	 */
+	public has(key: string): boolean {
+		return this._classes.has(key);
+	}
 
 	/**
 	 * Sets a key to "off" (false).  If the key doesn't exist it is created in
