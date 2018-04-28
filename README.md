@@ -26,7 +26,7 @@ $ yarn run all
 
 ## Overview
 
-Provides an ES6 class for managing CSS class names strings used in a [react](https://facebook.github.io/react/) component.  Strings are added to an internal, [immutablejs map instance](https://facebook.github.io/immutable-js/docs/#/Map) and later retrieved using the `classnames` property.  This property represents an concatenation of all active strings within the instance.  The values within the class can be turned on and off to create different combinations.  These strings can be used in the `className` property of a component.
+Provides an ES6 class for managing CSS class names strings used in a [react](https://facebook.github.io/react/) component.  Strings are added to an instance and later retrieved using the `classnames` property.  This property represents an concatenation of all active strings within the instance.  The values within the class can be turned on and off to create different combinations.  These strings can be used in the `className` property of a component.
 
 
 ## Usage

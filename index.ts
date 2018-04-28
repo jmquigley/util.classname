@@ -1,10 +1,5 @@
 'use strict';
 
-import {Map} from 'immutable';
-
-const debug = require('debug')('util.classnames');
-const pkg = require('./package.json');
-
 export interface ClassObject {
 	[key: string]: boolean;
 }
@@ -18,7 +13,7 @@ export type ClassValue = ClassValueStr | ClassObject;
  */
 export class ClassNames {
 
-	private _classes = Map<string, boolean>();
+	private _classes = new Map<string, boolean>();
 	private _clstr: string = '';
 	private _delimiter: string;
 	private _dirty: boolean = true;
@@ -60,21 +55,15 @@ export class ClassNames {
 	 */
 	get classnames(): string {
 		if (this.dirty) {
-			const keys: string[] = [];
-
-			for (const [key, val] of this._classes) {
+			this._clstr = '';
+			for (const [key, val] of this._classes.entries()) {
 				if (val) {
-					keys.push(key);
+					this._clstr += (key + this._delimiter);
 				}
 			}
 
-			this._clstr = keys.sort().join(this._delimiter);
+			this._clstr = this._clstr.slice(0, -1);
 			this.dirty = false;
-		}
-
-		/* istanbul ignore if  */
-		if (pkg.debug) {
-			debug(`class string: %s`, this._clstr);
 		}
 
 		return this._clstr;
@@ -96,7 +85,7 @@ export class ClassNames {
 		if (this._obj == null) {
 			this._obj = {};
 
-			for (const [key, val] of this._classes) {
+			for (const [key, val] of this._classes.entries()) {
 				this._obj[key] = val;
 			}
 		}
@@ -122,31 +111,29 @@ export class ClassNames {
 	 * @param flag {boolean} the initial value to set for each key when
 	 * they are added.  Set to true (on) by default.
 	 */
-	public add(val: ClassValue, flag: boolean = true): Map<string, boolean> {
+	public add(val: ClassValue, flag: boolean = true) {
 		if (val) {
 			if (typeof val === 'string') {
 				const tmp = this._classes.get(val);
 				if (tmp == null || tmp !== flag) {
-					this._classes = this._classes.set(val, flag);
+					this._classes.set(val, flag);
 					this.dirty = true;
 				}
 			} else if (val instanceof Array) {
 				for (const s of val) {
-					this._classes = this.add(s, flag);
+					this.add(s, flag);
 				}
 			} else {
-				this._classes = this.update(val);
+				this.update(val);
 			}
 		}
-
-		return this._classes;
 	}
 
 	/**
 	 * Removes all entries from the class object an resets it to empty
 	 */
 	public clear() {
-		this._classes = this._classes.clear();
+		this._classes.clear();
 		this._clstr = '';
 		this._dirty = false;
 		this._obj = null;
@@ -184,8 +171,8 @@ export class ClassNames {
 	 * the map.
 	 * @param val {ClassValueStr} a value to turn on in the class name Map
 	 */
-	public off(val: ClassValueStr): Map<string, boolean> {
-		return this.add(val, false);
+	public off(val: ClassValueStr) {
+		this.add(val, false);
 	}
 
 	/**
@@ -209,8 +196,6 @@ export class ClassNames {
 			for (const key of keys) {
 				this.add(key, !predicate);
 			}
-
-			return this._classes;
 		};
 	}
 
@@ -243,8 +228,6 @@ export class ClassNames {
 					this.on([...ifKeys]);
 					this.off([...elseKeys]);
 				}
-
-				return this._classes;
 			};
 		};
 	}
@@ -255,7 +238,7 @@ export class ClassNames {
 	 * @param val {ClassValueStr} a value to turn on in the class name Map
 	 */
 	public on(val: ClassValueStr) {
-		return this.add(val, true);
+		this.add(val, true);
 	}
 
 	/**
@@ -279,8 +262,6 @@ export class ClassNames {
 			for (const key of keys) {
 				this.add(key, predicate);
 			}
-
-			return this._classes;
 		};
 	}
 
@@ -314,8 +295,6 @@ export class ClassNames {
 					this.off([...ifKeys]);
 					this.on([...elseKeys]);
 				}
-
-				return this._classes;
 			};
 		};
 	}
@@ -324,7 +303,7 @@ export class ClassNames {
 	 * Permanently removes a class name key from the map.
 	 * @param val {ClassValueStr} a single string key to remove from the Map
 	 */
-	public remove(val: ClassValueStr): Map<string, boolean> {
+	public remove(val: ClassValueStr) {
 
 		if (typeof val === 'string') {
 			val = [val];
@@ -332,12 +311,10 @@ export class ClassNames {
 
 		for (const s of val) {
 			if (this._classes.has(s)) {
-				this._classes = this._classes.delete(s);
+				this._classes.delete(s);
 				this.dirty = true;
 			}
 		}
-
-		return this._classes;
 	}
 
 	/**
@@ -350,8 +327,8 @@ export class ClassNames {
 	/**
 	 * Resets all keys back to their "off" state.
 	 */
-	public resetAll(): Map<string, boolean> {
-		return this.off(Array.from(this._classes.keys()));
+	public resetAll() {
+		this.off(Array.from(this._classes.keys()));
 	}
 
 	/**
@@ -373,8 +350,6 @@ export class ClassNames {
 				this.add(s);
 			}
 		}
-
-		return this._classes;
 	}
 
 	/**
@@ -383,13 +358,11 @@ export class ClassNames {
 	 * @param obj {ClassObject} an object with key/value pairs that should
 	 * be set in the Map.
 	 */
-	public update(obj: ClassObject): Map<string, boolean> {
+	public update(obj: ClassObject) {
 		for (const key in obj) {
 			if (obj.hasOwnProperty(key)) {
 				this.add(key, obj[key]);
 			}
 		}
-
-		return this._classes;
 	}
 }
