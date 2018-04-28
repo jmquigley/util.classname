@@ -1,6 +1,6 @@
 {
   "name": "util.classnames",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "author": "jmquigley <jmquigley@outlook.com>",
   "description": "A class to manage CSS classes in a react component",
   "main": "./index.js",
