@@ -187,7 +187,7 @@ test('Test updating values in an existing ClassNames object', t => {
 	t.is(clsn.classnames, 'b');
 });
 
-test('Test creating the classnames string with a differnet delimiter', t => {
+test('Test creating the classnames string with a different delimiter', t => {
 	const clsn = new ClassNames(['a', 'b', 'c'], '@');
 
 	t.truthy(clsn);

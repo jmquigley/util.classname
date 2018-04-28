@@ -1,6 +1,7 @@
 {
   "name": "util.classnames",
   "version": "0.0.19",
+  "debug": false,
   "author": "jmquigley <jmquigley@outlook.com>",
   "description": "A class to manage CSS classes in a react component",
   "main": "./index.js",
@@ -17,14 +18,18 @@
   "engines": {
     "node": ">=7.x"
   },
+  "dependencies": {
+    "immutable": "^4.0.0-rc.9"
+  },
   "devDependencies": {
     "@types/node": "^9.6.6",
     "ava": "^0.25.0",
     "coveralls": "^3.0.0",
+    "debug": "^3.1.0",
     "nyc": "^11.7.1",
     "tslint": "^5.9.1",
     "typescript": "^2.8.3",
-    "util.pkgwrap": "^0.0.91"
+    "util.pkgwrap": "~0.0.92"
   },
   "pkgwrap": {
     "cleanup": [
