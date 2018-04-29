@@ -16,6 +16,7 @@ for a react component.
     * [.length](#ClassNames+length) ⇒ <code>number</code>
     * [.obj](#ClassNames+obj) ⇒ <code>any</code>
     * [.size](#ClassNames+size) ⇒ <code>number</code>
+    * [.str](#ClassNames+str) ⇒ <code>string</code>
     * [.add(val, flag)](#ClassNames+add)
     * [.clear()](#ClassNames+clear)
     * [.contains(key)](#ClassNames+contains) ⇒
@@ -101,6 +102,11 @@ key/value pair object.
 ### classNames.size ⇒ <code>number</code>
 **Kind**: instance property of [<code>ClassNames</code>](#ClassNames)  
 **Returns**: <code>number</code> - the total number of class names in the map  
+<a name="ClassNames+str"></a>
+
+### classNames.str ⇒ <code>string</code>
+**Kind**: instance property of [<code>ClassNames</code>](#ClassNames)  
+**Returns**: <code>string</code> - a convenience method for the classnames attribute call.  
 <a name="ClassNames+add"></a>
 
 ### classNames.add(val, flag)

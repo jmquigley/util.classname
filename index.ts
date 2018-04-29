@@ -101,6 +101,13 @@ export class ClassNames {
 	}
 
 	/**
+	 * @return {string} a convenience method for the classnames attribute call.
+	 */
+	get str(): string {
+		return this.classnames;
+	}
+
+	/**
 	 * Adds a new value to the class names map.  It can accept a string, an
 	 * array of strings, or a simple key/value object (in the form
 	 * <string, boolean>).  By default the key is added in the "on" state.

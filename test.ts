@@ -8,6 +8,7 @@ test('Test creation of a ClassNames object with a string', t => {
 
 	t.truthy(clsn);
 	t.is(clsn.classnames, 'a');
+	t.is(clsn.str, 'a');
 	t.is(clsn.length, 1);
 });
 
@@ -16,6 +17,7 @@ test('Test creation of a ClassNames object', t => {
 
 	t.truthy(clsn);
 	t.is(clsn.classnames, 'a b c');
+	t.is(clsn.str, 'a b c');
 	t.is(clsn.size, 3);
 
 	const cls = clsn.classes;
@@ -31,10 +33,11 @@ test('Test creation of a ClassNames object using an object', t => {
 
 	t.truthy(clsn);
 	t.is(clsn.classnames, 'a b c');
+	t.is(clsn.str, 'a b c');
 	t.is(clsn.length, 3);
 });
 
-test('Test accessing an emtpy ClassName object', t => {
+test('Test accessing an empty ClassName object', t => {
 	const clsn = new ClassNames();
 
 	t.truthy(clsn);

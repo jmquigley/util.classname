@@ -94,6 +94,7 @@ const clsn = new ClassNames({a: true, b: true, c: false});
 - [.length](docs/index.md#ClassNames+length)
 - [.obj](docs/index.md#ClassNames+obj)
 - [.size](docs/index.md#ClassNames+size)
+- [.str](docs/index.md#ClassNames+str)
 
 #### methods
 - [add()](docs/index.md#ClassNames+add)
