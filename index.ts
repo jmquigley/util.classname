@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 export interface ClassObject {
 	[key: string]: boolean;
@@ -12,14 +12,13 @@ export type ClassValue = ClassValueStr | ClassObject;
  * for a react component.
  */
 export class ClassNames {
-
 	private _classes = new Map<string, boolean>();
-	private _clstr: string = '';
+	private _clstr: string = "";
 	private _delimiter: string;
 	private _dirty: boolean = true;
 	private _obj: any = null;
 
-	constructor(strs: ClassValue = null, delimiter: string = ' ') {
+	constructor(strs: ClassValue = null, delimiter: string = " ") {
 		this._delimiter = delimiter;
 		this.add(strs);
 	}
@@ -55,10 +54,10 @@ export class ClassNames {
 	 */
 	get classnames(): string {
 		if (this.dirty) {
-			this._clstr = '';
+			this._clstr = "";
 			for (const [key, val] of this._classes.entries()) {
 				if (val) {
-					this._clstr += (key + this._delimiter);
+					this._clstr += key + this._delimiter;
 				}
 			}
 
@@ -81,7 +80,6 @@ export class ClassNames {
 	 * key/value pair object.
 	 */
 	get obj(): any {
-
 		if (this._obj == null) {
 			this._obj = {};
 
@@ -120,7 +118,7 @@ export class ClassNames {
 	 */
 	public add(val: ClassValue, flag: boolean = true) {
 		if (val) {
-			if (typeof val === 'string') {
+			if (typeof val === "string") {
 				const tmp = this._classes.get(val);
 				if (tmp == null || tmp !== flag) {
 					this._classes.set(val, flag);
@@ -141,7 +139,7 @@ export class ClassNames {
 	 */
 	public clear() {
 		this._classes.clear();
-		this._clstr = '';
+		this._clstr = "";
 		this._dirty = false;
 		this._obj = null;
 	}
@@ -294,7 +292,6 @@ export class ClassNames {
 	public onIfElse(predicate: boolean) {
 		return (...ifKeys: string[]) => {
 			return (...elseKeys: string[]) => {
-
 				if (predicate) {
 					this.on([...ifKeys]);
 					this.off([...elseKeys]);
@@ -311,8 +308,7 @@ export class ClassNames {
 	 * @param val {ClassValueStr} a single string key to remove from the Map
 	 */
 	public remove(val: ClassValueStr) {
-
-		if (typeof val === 'string') {
+		if (typeof val === "string") {
 			val = [val];
 		}
 
@@ -345,8 +341,7 @@ export class ClassNames {
 	 * @param val {string} a single string key to toggle.
 	 */
 	public toggle(val: ClassValueStr) {
-
-		if (typeof val === 'string') {
+		if (typeof val === "string") {
 			val = [val];
 		}
 
