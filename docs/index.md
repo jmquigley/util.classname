@@ -39,10 +39,9 @@ Permanently removes a class name key from the map.  This is an alias
 for the remove method.
 
 **Kind**: instance property of [<code>ClassNames</code>](#ClassNames)  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>ClassValueStr</code> | a single string key to remove from the Map |
+- val <code>ClassValueStr</code> - a single string key to remove from the Map
 
 <a name="ClassNames+reset"></a>
 
@@ -51,10 +50,9 @@ Takes a string or list of string keys and resets their values to the
 "off"" state.  This is an alias for the "off" function.
 
 **Kind**: instance property of [<code>ClassNames</code>](#ClassNames)  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>ClassValueStr</code> | the string keys to turn off |
+- val <code>ClassValueStr</code> - the string keys to turn off
 
 <a name="ClassNames+dirty"></a>
 
@@ -67,10 +65,9 @@ Takes a string or list of string keys and resets their values to the
 When the Map object is modified the dirty state is set to true.
 
 **Kind**: instance property of [<code>ClassNames</code>](#ClassNames)  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>boolean</code> | the state of the dirtfy flag |
+- val <code>boolean</code> - the state of the dirtfy flag
 
 <a name="ClassNames+classes"></a>
 
@@ -118,11 +115,11 @@ of strings.  If an object with key/value paris are given, then it is
 added with the given state values in the object.
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+**Params**
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| val | <code>ClassValue</code> |  | a value to add to the class name Map |
-| flag | <code>boolean</code> | <code>true</code> | the initial value to set for each key when they are added.  Set to true (on) by default. |
+- val <code>ClassValue</code> - a value to add to the class name Map
+- flag <code>boolean</code> <code> = true</code> - the initial value to set for each key when
+they are added.  Set to true (on) by default.
 
 <a name="ClassNames+clear"></a>
 
@@ -137,10 +134,9 @@ Checks if the class name is in the map and is currently active.
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
 **Returns**: true if the class name is found and is on, otherwise false  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| key | <code>string</code> | the name of the class key to find |
+- key <code>string</code> - the name of the class key to find
 
 <a name="ClassNames+has"></a>
 
@@ -150,10 +146,9 @@ or off.  It just needs to be in the map.
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
 **Returns**: true if the key is in the class list otherwise false.  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| key | <code>string</code> | the name of the class key to search for in the map |
+- key <code>string</code> - the name of the class key to search for in the map
 
 <a name="ClassNames+off"></a>
 
@@ -162,10 +157,9 @@ Sets a key to "off" (false).  If the key doesn't exist it is created in
 the map.
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>ClassValueStr</code> | a value to turn on in the class name Map |
+- val <code>ClassValueStr</code> - a value to turn on in the class name Map
 
 <a name="ClassNames+offIf"></a>
 
@@ -182,11 +176,11 @@ clsn.offIf(true)(
 ```
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| predicate | <code>boolean</code> | a boolean condition when true means that the items will be turned on in the Map |
-| keys | <code>string</code> | N number of strings to use for the toggle |
+- predicate <code>boolean</code> - a boolean condition when true means that the
+items will be turned on in the Map
+- keys <code>string</code> - N number of strings to use for the toggle
 
 <a name="ClassNames+offIfElse"></a>
 
@@ -205,12 +199,12 @@ clsn.offIfElse(true)(
 ```
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| predicate | <code>boolean</code> | a boolean condition when true means that the items will be turned off in the set |
-| ifKeys | <code>string</code> | N number of strings to use for the if toggle |
-| elseKeys | <code>string</code> | N number of strings to use for the else toggle |
+- predicate <code>boolean</code> - a boolean condition when true means that the
+items will be turned off in the set
+- ifKeys <code>string</code> - N number of strings to use for the if toggle
+- elseKeys <code>string</code> - N number of strings to use for the else toggle
 
 <a name="ClassNames+on"></a>
 
@@ -219,10 +213,9 @@ Sets a key to "on" (true).  If the key doesn't exist it is created in
 the map.
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>ClassValueStr</code> | a value to turn on in the class name Map |
+- val <code>ClassValueStr</code> - a value to turn on in the class name Map
 
 <a name="ClassNames+onIf"></a>
 
@@ -239,11 +232,11 @@ clsn.onIf(true)(
 ```
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| predicate | <code>boolean</code> | a boolean condition when true means that the items will be turned on in the Map |
-| keys | <code>string</code> | N number of strings to use for the toggle |
+- predicate <code>boolean</code> - a boolean condition when true means that the
+items will be turned on in the Map
+- keys <code>string</code> - N number of strings to use for the toggle
 
 <a name="ClassNames+onIfElse"></a>
 
@@ -262,12 +255,12 @@ clsn.onIfElse(true)(
 ```
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| predicate | <code>boolean</code> | a boolean condition when true means that the items will be turned off in the set |
-| ifKeys | <code>string</code> | N number of strings to use for the if toggle |
-| elseKeys | <code>string</code> | N number of strings to use for the else toggle |
+- predicate <code>boolean</code> - a boolean condition when true means that the
+items will be turned off in the set
+- ifKeys <code>string</code> - N number of strings to use for the if toggle
+- elseKeys <code>string</code> - N number of strings to use for the else toggle
 
 <a name="ClassNames+remove"></a>
 
@@ -275,10 +268,9 @@ clsn.onIfElse(true)(
 Permanently removes a class name key from the map.
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>ClassValueStr</code> | a single string key to remove from the Map |
+- val <code>ClassValueStr</code> - a single string key to remove from the Map
 
 <a name="ClassNames+resetAll"></a>
 
@@ -294,10 +286,9 @@ If the key requested doesn't exist, then it is added in the initial
 on state.
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| val | <code>string</code> | a single string key to toggle. |
+- val <code>string</code> - a single string key to toggle.
 
 <a name="ClassNames+update"></a>
 
@@ -306,8 +297,8 @@ Takes an input object of type <string, boolean> and udpates the
 keys in the Map with the given values.
 
 **Kind**: instance method of [<code>ClassNames</code>](#ClassNames)  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| obj | <code>ClassObject</code> | an object with key/value pairs that should be set in the Map. |
+- obj <code>ClassObject</code> - an object with key/value pairs that should
+be set in the Map.
 
