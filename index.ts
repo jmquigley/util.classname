@@ -106,6 +106,13 @@ export class ClassNames {
 	}
 
 	/**
+	 * @return {string} a convenience method for the classnames attribute call.
+	 */
+	get value(): string {
+		return this.classnames;
+	}
+
+	/**
 	 * Adds a new value to the class names map.  It can accept a string, an
 	 * array of strings, or a simple key/value object (in the form
 	 * <string, boolean>).  By default the key is added in the "on" state.
@@ -115,8 +122,9 @@ export class ClassNames {
 	 * @param val {ClassValue} a value to add to the class name Map
 	 * @param flag {boolean} the initial value to set for each key when
 	 * they are added.  Set to true (on) by default.
+	 * @return a string representing the new className value
 	 */
-	public add(val: ClassValue, flag: boolean = true) {
+	public add(val: ClassValue, flag: boolean = true): string {
 		if (val) {
 			if (typeof val === "string") {
 				const tmp = this._classes.get(val);
@@ -132,6 +140,8 @@ export class ClassNames {
 				this.update(val);
 			}
 		}
+
+		return this.classnames;
 	}
 
 	/**
@@ -175,9 +185,10 @@ export class ClassNames {
 	 * Sets a key to "off" (false).  If the key doesn't exist it is created in
 	 * the map.
 	 * @param val {ClassValueStr} a value to turn on in the class name Map
+	 * @return a string representing the new className value
 	 */
-	public off(val: ClassValueStr) {
-		this.add(val, false);
+	public off(val: ClassValueStr): string {
+		return this.add(val, false);
 	}
 
 	/**
@@ -241,9 +252,10 @@ export class ClassNames {
 	 * Sets a key to "on" (true).  If the key doesn't exist it is created in
 	 * the map.
 	 * @param val {ClassValueStr} a value to turn on in the class name Map
+	 * @return a string representing the new className value
 	 */
-	public on(val: ClassValueStr) {
-		this.add(val, true);
+	public on(val: ClassValueStr): string {
+		return this.add(val, true);
 	}
 
 	/**
@@ -288,6 +300,7 @@ export class ClassNames {
 	 * items will be turned off in the set
 	 * @param ifKeys {string} N number of strings to use for the if toggle
 	 * @param elseKeys {string} N number of strings to use for the else toggle
+	 * @return a string representing the new className value
 	 */
 	public onIfElse(predicate: boolean) {
 		return (...ifKeys: string[]) => {
@@ -306,6 +319,7 @@ export class ClassNames {
 	/**
 	 * Permanently removes a class name key from the map.
 	 * @param val {ClassValueStr} a single string key to remove from the Map
+	 * @return a string representing the new className value
 	 */
 	public remove(val: ClassValueStr) {
 		if (typeof val === "string") {
@@ -318,6 +332,8 @@ export class ClassNames {
 				this.dirty = true;
 			}
 		}
+
+		return this.classnames;
 	}
 
 	/**
@@ -339,8 +355,9 @@ export class ClassNames {
 	 * If the key requested doesn't exist, then it is added in the initial
 	 * on state.
 	 * @param val {string} a single string key to toggle.
+	 * @return a string representing the new className value
 	 */
-	public toggle(val: ClassValueStr) {
+	public toggle(val: ClassValueStr): string {
 		if (typeof val === "string") {
 			val = [val];
 		}
@@ -352,6 +369,8 @@ export class ClassNames {
 				this.add(s);
 			}
 		}
+
+		return this.classnames;
 	}
 
 	/**
@@ -359,12 +378,15 @@ export class ClassNames {
 	 * keys in the Map with the given values.
 	 * @param obj {ClassObject} an object with key/value pairs that should
 	 * be set in the Map.
+	 * @return a string representing the new className value
 	 */
-	public update(obj: ClassObject) {
+	public update(obj: ClassObject): string {
 		for (const key in obj) {
 			if (obj.hasOwnProperty(key)) {
 				this.add(key, obj[key]);
 			}
 		}
+
+		return this.classnames;
 	}
 }

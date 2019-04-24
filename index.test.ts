@@ -8,6 +8,7 @@ test("Test creation of a ClassNames object with a string", () => {
 	expect(clsn).toBeDefined();
 	expect(clsn.classnames).toBe("a");
 	expect(clsn.str).toBe("a");
+	expect(clsn.value).toBe("a");
 	expect(clsn.length).toBe(1);
 });
 
@@ -51,7 +52,7 @@ test("Test adding a name and turning if off in a ClassNames", () => {
 	expect(clsn.classnames).toBe("");
 	expect(clsn.length).toBe(0);
 
-	clsn.add("a");
+	expect(clsn.add("a")).toBe("a");
 	expect(clsn.length).toBe(1);
 	expect(clsn.classnames).toBe("a");
 
@@ -104,7 +105,7 @@ test("Test removing a list of values from a ClassNames object", () => {
 	expect(clsn.length).toBe(5);
 	expect(clsn.classnames).toBe("a b c d e");
 
-	clsn.remove(["a", "c", "e"]);
+	expect(clsn.remove(["a", "c", "e"])).toBe("b d");
 	expect(clsn.length).toBe(2);
 	expect(clsn.classnames).toBe("b d");
 });
