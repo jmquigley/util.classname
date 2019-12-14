@@ -1,5 +1,3 @@
-"use strict";
-
 import {ClassNames} from "./index";
 
 test("Test creation of a ClassNames object with a string", () => {
